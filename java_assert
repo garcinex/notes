@@ -1,0 +1,25 @@
+assertFalse(userAPIObject.getUser().getAsJson().getJSONObject("sourceConfig").getJSONObject(bundleId).getJSONObject("actions").getBoolean("INSTALL"));
+String id = result.getAsJson().getJSONArray("items").getJSONObject(0).getString("id");
+
+JSONArray items = response.getAsJson().getJSONArray("items");
+        for (Object item : items) {
+            assertEquals(((JSONObject) item).getJSONObject("semantic").getString("category").toLowerCase(), "lights");
+			
+assertThat(response, hasStatusCode(200));
+assertFalse(response.getBody().isEmpty());
+assertThat(response.getAsJson().getJSONArray("items").length(), equalTo(1));
+assertThat(response, field("items[0].value.property").equalsTo("playSound"));
+
+assertThat(response, hasStatusCode(200));
+assertThat(response.getAsJson().getJSONArray("items").getJSONObject(0).getJSONObject("value").getString("property"),
+		equalTo("activePlaylist"));
+assertThat(response.getAsJson().getJSONArray("items").length(), equalTo(1));
+
+assertEquals(((JSONObject) item).getJSONObject("semantic").getString("category").toLowerCase(), "lights");
+Assert.assertEquals(response.getAsJson().getJSONArray("items").length(), 1);
+
+
+getContentResponse.getJSONArray("conditions").getJSONObject(0).getJSONArray("operands").getJSONObject(1).getInt("value")
+automationAPIObject.getAutomationContent(automationId).getStringField("conditions[0].operands[1].value")
+
+automationAPIObject.getAutomationContent(automationId).getAsJson().getJSONArray("actions").getJSONObject(0).getInt("value";
