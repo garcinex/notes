@@ -1,0 +1,82 @@
+#String formatting
+String body = String.format("{\"name\": \"%s\"}", newName);
+
+#wait for element and do action
+String loginButton = "//android.widget.Button[@text=\"Zaloguj się\" or @text=\"Login\"]";
+AppElement accept = driver.waitForElement(By.xpath(loginButton), 20);
+if (accept != null) {
+	driver.waitForElement(By.id("email-field")).setValue(login);
+	driver.waitForElement(By.id("password-field")).setValue(pass);
+	driver.waitForElement(By.xpath(loginButton)).click();
+}
+
+#wait for element
+webDriverWait.until(ExpectedConditions.visibilityOf(bottomSaveButton));
+
+#random int
+int randomInt = (int)(Math.random() * 1000);
+
+#findElement
+driver.findElement(MobileBy.AndroidUIAutomator(ui));
+driver.findElement(MobileBy.AndroidUIAutomator("new UiSelector().resourceIdMatches(\".*page_header_card.*\").index(1)"));	
+@AndroidFindBy(uiAutomator = "new UiSelector().resourceIdMatches(\".*title.*\")")
+
+#AndroidFindBy
+@AndroidFindBy(uiAutomator = "new UiSelector().resourceIdMatches(\".*toolbar.*\").className(\"android.widget.TextView\")")
+public MobileElement appBarTitle;
+
+public String getAppBarTitle() {
+	return appBarTitle.getText();
+}
+	
+#find elements based on the list size and click
+String roomImages = "new UiSelector().resourceIdMatches(\".*frame_view.*\")";
+List<AppElement> images = driver.findElements(MobileBy.AndroidUIAutomator(roomImages));
+images.get(1).click();
+
+
+#assert
+assertTrue(Arrays.equals(roomImageAfter, roomImageBefore), "Room images are the same");
+assertFalse(sourcesAPIObject.get().getJsonArray("$..bundleId").toList().containsAll(Arrays.asList(bundles)), "GET /source contains " + Arrays.toString(bundles));
+assertEquals(getContentResponse.getJSONArray("trigger").getJSONObject(0).getString("id"), triggerId, "The \"triggerId\" value has changed");
+assertFalse(automationContent.getStringField("$..actions[0].propertyId").contains("null"));
+assertEquals(automationContent.getStringField("$..actions[0].propertyId"), "[\"\"]");
+        assertThat(getPartnersAfter, field("bundles[0].apps[1].name").equalsTo("TestWebhookUpdated"));
+
+List<String> allRoomTitles = roomsView.getAllRoomTitles();
+assertFalse(allRoomTitles.contains(roomBefore), "Deleted room is still available");
+
+#String to List
+List<String> itemsList = Arrays.asList(items.split("\\s*,\\s*"));
+
+#element to new list
+elements.stream().filter(e->e.getAttribute("checked").equals("true")).collect(Collectors.toList());
+
+String checkedBox = "new UiSelector().resourceIdMatches(\".*device_checkbox.*\")";
+List<AppElement> elements = driver.findElements(MobileBy.AndroidUIAutomator(checkedBox));
+List<AppElement> checkedElements = new ArrayList<AppElement>();
+for (AppElement i: elements) {
+    if (i.getAttribute("checked") == "true") {
+        checkedElements.add(i);
+    }
+}
+
+#take keys from json
+sourcesAPIObject.get().getJsonArray("$..bundleId")
+
+#sendKeys
+driver.findElementByXPath(xpath).sendKeys(Keys.ENTER);
+
+#remove part of the string using index
+String orderItem = CreateIssueSteps.getOrderItem();
+int index = orderItem.indexOf(" ");
+driver.findElementByXPath(xpath).sendKeys(orderItem.substring(0, index));
+
+#import variable from different class
+source class create getter
+    public static String getOrderItem() {
+        return orderItem;
+    }
+	
+target class
+String orderItem = CreateIssueSteps.getOrderItem();
