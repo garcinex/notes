@@ -1,0 +1,305 @@
+--pytest
+	from execution_tool.python_dependencies import pytest	
+	@pytest.mark.xfail(reason="Subx2 folder sorting is incorrect")
+	@pytest.mark.skip(reason="Docmaster removed from the scope")
+	@pytest.mark.parametrize("param0, param1, param2, param3, param4", auto_gen_pn)
+	def test_auto_gen_partnumber(self, param0, param1, param2, param3, param4):
+		self.main_page.check_if_project_is_in_solution_navigator(param0, param1)
+		self.main_page.expand_projec_or_product(param2)
+		self.main_page.expand_projec_or_product(param3)
+		self.main_page.click_on_configuration(param4)
+	
+def get_part_number(self, n):
+	self._LOG.info("Getting %s element part number from search results", n)
+	return self.get_n_element_from_results(n).find_element_by_xpath("//bosch-helper-apply-mask").text
+	
+--find
+	check_matnr = current_url.find("MATNR=" + part_number)
+	check_sap = current_url.find("SAP=" + system.lstrip("SAP").replace(" ", ""))
+
+--append
+	results_navigator_tab.append(item.get_attribute("title")) or .append(item.text)
+	my_list = ['geeks', 'for', 'geeks'] 
+	another_list = [6, 0, 4, 1] 
+	my_list.append(another_list) 
+	print my_list 
+	>>['geeks', 'for', 'geeks', [6, 0, 4, 1]]
+
+--extend - adds to list new elements. 
+	my_list = ['geeks', 'for'] 
+	another_list = [6, 0, 4, 1] 
+	my_list.extend(another_list) 
+	print my_list 
+	['geeks', 'for', 6, 0, 4, 1]
+
+--while len !=0
+	while len(self.driver.find_elements_by_xpath("//*[@id=\"tree\"]//div[@title=\"remove\"]")) != 0:
+		for item in self.driver.find_elements_by_xpath("//*[@id=\"tree\"]//div[@title=\"remove\"]"):
+			item.click()
+			time.sleep(3)
+					
+--click button and 					
+	def click_action_button(self, button):
+		self._LOG.info("Click %s button", button)
+		button_list = self.driver.find_elements_by_xpath("//div[@class=\"b-cpq-datasheet-buttonbar btn-group-vertical\"]//button")
+		for i in button_list:
+			if button in i.text:
+				i.click()
+				break
+--assert
+	assert not
+	assert False, "Oh no! This assertion failed!"
+	assert "HALB" in self.search_page.get_first_line_from_product(i).text, "HALB is not presented in summary of " + str(i) + " search result."
+	assert len(duplicates_all) == 0, "There is some {} duplicates in {}".format(duplicates_all.values(),duplicates_all.keys())
+
+--compare_lists
+	bom_usage_filter_reference = ["Spare parts", "Production", "Documentation", "Accessory", "Sales", "Universal", "Costing and Design", "Kit BOM"]
+	bom_usage_filter_list = self.search_page.get_filter_names("BOM Usage")
+	compare_lists = set(bom_usage_filter_reference).difference(bom_usage_filter_list)
+
+--List Comprehension:
+	[expr for val in collection]
+	[expr for val in collection if <test> and <test2>yt]
+	[i**2 for i in range(1,101)]
+	assert not any([i.endswith('-') for i in file_type_values])
+	4*sum(pow(-1,k)/(2*k+1) for k in range(10000))
+	test_data = {k.replace(" ", ""): v for k, v in test_data.items()}
+	any(["CREO" in s for s in file_type_values])
+	
+	tabs_list = self.driver.find_elements_by_xpath(xpath)
+        tabs = [tab.text for tab in tabs_list]
+		
+	dict and sum of numbers in a list 	
+	sum([v for k, v in division_dict.items() if "A" in k])
+
+--iframe
+	def input_remarks(self, text):
+		self._LOG.info("Input remarks: %s", text)
+		driver = self.driver.get_driver()
+		iframe = driver.find_element_by_xpath("//div[@id=\"cke_remarks\"]//iframe")
+		driver.switch_to.frame(iframe)
+		driver.find_element_by_xpath("/html/body").send_keys(text)
+		driver.switch_to.default_content()
+	
+--radio buttons
+	def choose_option(self, value_to_be_selected):
+		self._LOG.info("Choose %s option", value_to_be_selected)
+		values_xpath = "//div[@class=\"configuratorWrapper\"]//div[@class=\"configurator\"]/*/div[contains(@id, \"accordion-content\") and @style=\"\"]//input"
+		values = self.driver.find_elements_by_xpath(values_xpath)
+
+		for value in values:
+			if value.get_attribute("value") == value_to_be_selected:
+				value.click()
+				
+--test name and CWID to file
+    def go_to_detailed_page(self, n=1):
+        self._LOG.info("Open detailed page for the product")
+        xpath = "//h4//cw-navlink"
+        detailed_page = self.get_n_element_from_results(n).find_element_by_xpath(xpath)
+        detailed_page.click()
+        self.driver.switch_to_tab(-1)
+        url = self.driver.get_current_url()
+        external_id = url[(url.find("ExternalId=") + len("ExternalId=")):]
+        artifact_type_raw = self.driver.find_element_by_xpath("//div[@class=\"long-view-card\"]/h2/span").text
+        artifact_type = artifact_type_raw[:artifact_type_raw.find(":")]
+
+        with open('ids_type.txt', 'a') as f:
+            lines_of_text = [os.environ.get('PYTEST_CURRENT_TEST'), "\n", external_id, "\n", artifact_type, "\n\n"]
+            f.writelines(lines_of_text)
+            f.close()
+
+        assert False
+		
+		#test data arround (when filter applied)
+        #write CWID to file
+        hits = self.get_nr_of_hits_found()
+        if hits >= 10:
+            end_of_range = 11
+        elif hits == 0:
+            assert 0
+        else:
+            end_of_range = hits + 1
+
+        for i in range(1,end_of_range):
+            self.go_to_detailed_page(i)
+            self.detailed_page.wait_for_loading()
+            url = self.driver.get_current_url()
+            external_id = url[(url.find("ExternalId=") + len("ExternalId=")):]
+            artifact_type_raw = self.driver.find_element_by_xpath("//div[@class=\"long-view-card\"]/h2/span").text
+            artifact_type = artifact_type_raw[:artifact_type_raw.find(":")]
+
+            with open('ids_2nd_round_v2.txt', 'r+') as f:
+                if external_id not in f.read():
+                    lines_of_text = [os.environ.get('PYTEST_CURRENT_TEST'), "\n", external_id, "\n", artifact_type, "\n\n"]
+                    f.writelines(lines_of_text)
+                    f.close()
+
+            self.detailed_page.return_to_the_search_page()
+            self.wait_for_loading()
+
+        assert 0
+		
+		#zaczytywanie urli z plikow i odczyt danych
+		def test_gn_urls(self):
+			with open('gn_urls.txt', 'r') as f:
+				datefile = f.readlines()
+				for line in datefile:
+					self.driver.get(line)
+					sleep(2)
+					url = self.driver.get_current_url()
+					external_id = url[(url.find("ExternalId=") + len("ExternalId=")):]
+					artifact_type_raw = self.driver.find_element_by_xpath("//div[@class=\"long-view-card\"]/h2/span").text
+					artifact_type = artifact_type_raw[:artifact_type_raw.find(":")]
+
+					with open('ids_2nd_round_v2.txt', 'r+') as f:
+						if external_id not in f.read():
+							lines_of_text = [os.environ.get('PYTEST_CURRENT_TEST'), "\n", external_id, "\n", artifact_type,
+											 "\n\n"]
+							f.writelines(lines_of_text)
+			f.close()
+
+		#find good (read and append works)
+        self.go_to_detailed_page()
+        url = self.driver.get_current_url()
+        external_id = url[(url.find("ExternalId=") + len("ExternalId=")):]
+        artifact_type_raw = self.driver.find_element_by_xpath("//div[@class=\"long-view-card\"]/h2/span").text
+        artifact_type = artifact_type_raw[:artifact_type_raw.find(":")]
+
+        file_name = "ids_2nd_round_v2.txt"
+
+        with open(file_name, 'r') as f:
+            if external_id not in rf.read():
+                with open(file_name, 'a') as f:
+                    lines_of_text = [os.environ.get('PYTEST_CURRENT_TEST'), "\n", external_id, "\n", artifact_type, "\n\n"]
+                    f.writelines(lines_of_text)
+            f.close()
+
+        assert False
+		
+--path
+import os
+os.getcwd()
+os.path.exists(os.getcwd())
+
+--regular expressions
+hits_found  = int(re.sub('[^0-9]', '', hits_found_raw)) '2 hits found' to '2'
+[^...] Matches any single character not in brackets
+https://www.tutorialspoint.com/python/python_reg_expressions.htm
+
+--datetime
+date_object = datetime.strptime(modified_on, '%m/%d/%Y %H:%M:%S %p')
+date_object_year = date_object.year
+today_year = datetime.today().year
+
+--pip install
+pip install --target .\execution_tool\python_dependencies pytest-rerunfailures
+
+--Partial functions
+def over(a,b):
+    return a/b
+inverse = functools.partial(over,1)
+half = functools.partial(over, b = 2)
+inverse(2) -> 0.5
+half(3) -> 1.5
+
+--Keys
+from selenium.webdriver.common.keys import Keys
+self.driver.find_element_by_xpath(search_field_xpath).send_keys(Keys.ENTER)
+
+--logowanie w popupie
+driver_factory
+mypath = os.path.abspath(os.path.join(basepath, "..", "selenium", "proxy.zip"))
+options.add_extension(mypath)
+
+var username = "ecds_user";
+var password = "rudywilk18";
+var retry = 3;
+
+chrome.webRequest.onAuthRequired.addListener(
+  function handler(details) {    
+    if (--retry < 0)
+      return {cancel: true};
+    return {authCredentials: {username: username, password: password}};
+  },
+  {urls: ["<all_urls>"]},
+  ['blocking']
+);
+
+--create dict, add keys and values
+	duplicates_all = {}
+	duplicates = [filter_val_low[i] for i in range(len(filter_val_low)) if not i == filter_val_low.index(filter_val_low[i])]
+    if duplicates:
+		duplicates_all.update({filter: duplicates})
+	
+	assert len(duplicates_all) == 0, "There is some {} duplicates in {}".format(duplicates_all.values(),duplicates_all.keys())
+
+--kerberos dla CPQ - zwraca tylko odpowiedz
+from requests_kerberos import HTTPKerberosAuth, OPTIONAL 
+
+kerberos_auth = HTTPKerberosAuth(mutual_authentication=OPTIONAL)
+with requests.get(link, auth=kerberos_auth) as resp: 
+link = https://rb-wam.bosch.com/cpq_pc1_dev/
+
+--requests and BeautifulSoup
+	import requests
+	from bs4 import BeautifulSoup
+
+	URL = 'https://www.amazon.de/dp/B06ZXQV6P8/ref=sr_1_3?__mk_pl_PL=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=alexa&qid=1573815052&sr=8-3'
+
+	headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101 Firefox/68.0"}
+
+	page = requests.get(URL, headers=headers)
+
+	soup = BeautifulSoup(page.content, 'html.parser')
+
+	title = soup.find(id="productTitle").get_text()
+	price = soup.find(id='priceblock_ourprice').get_text().replace(',','.')
+	converted_price = float(price[0:5])
+
+	print(converted_price)
+	print(title.strip())
+	
+--details_page_object def get_names_of_active_tabs_v2(self):
+	self._LOG.info("Getting names of an active tabs")
+	xpath = "//cw-tabs//li/a[@class=\"nav-link active\" or @class=\"nav-link\"]"
+	tabs_list = self.driver.find_elements_by_xpath(xpath)
+	tabs = [tab.text for tab in tabs_list]
+	tabs.append("People")
+	with open('tabs.txt', 'a') as f:
+		lines_of_text = [os.environ.get('PYTEST_CURRENT_TEST'), "\n", str(tabs), "\n\n"]
+		f.writelines(lines_of_text)
+	f.close()
+
+	assert 0
+	
+--selenium scroll down
+self.driver.execute_script("window.scrollTo(0, 1080)")
+
+--os.walk
+	path = os.getcwd()
+	roots = next(os.walk(path))[0]
+	print("Roots = %s" % roots)
+
+	dirs = next(os.walk(path))[1]
+	print("Dirs = %s" % dirs)
+
+	files = next(os.walk(path))[2]
+	print("Files = %s" % files)
+	
+--text formating
+	print("{1} love {0}!!".format("GeeksforGeeks", "Geeks")) 
+	Old '%s %s' % ('one', 'two')
+	New '{} {}'.format('one', 'two')
+	Old '%d %d' % (1, 2)
+	New '{} {}'.format(1, 2)
+
+--progress bar
+	import time,sys
+	
+	for i in range(60 + 1):
+		time.sleep(1)
+		sys.stdout.write("-")  # prints a dash for each iteration of loop
+		sys.stdout.flush() # ensures bar is displayed incrementally
+		
+--for in one line
+	hits if hits <= 5 else 6
