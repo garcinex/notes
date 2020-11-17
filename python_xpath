@@ -1,0 +1,22 @@
+//*[@id="tree"]//li[@aria-expanded="true"]//li[@role="treeitem"]//span[@class="fancytree-title"]
+
+//div[@class ="configuratorWrapper"]//div[@class="configurator"]/*/div[contains(@id, "accordion-content") and @style=""]//li
+
+//span[@class="fancytree-title" and contains(@title, "Vectra Wagon")]/../span[@role="button"]
+//li[@role="treeitem" and contains(@title, "Adam Opel GmbH")]
+//div[@role="dialog" and not(contains(@style, "display: none"))]//*[@id="projectName"]
+
+//li[@role=\"treeitem\"]//*[contains(text(), \"" + configuration_to_be_selected + "\")]"
+
+//span[contains(@class,"fancytree-node") and .//div[text()="Vectra Wagon"]]/../ul
+//span[contains(@class,"fancytree-node") and .//span[contains(@title, "Adam Opel GmbH")]]/../ul
+//span[contains(@class,"fancytree-node") and .//*[text()="Adam Opel GmbH"]]/../ul
+
+//div[@class="result"][1]//bosch-docmaster-links/div/a[contains(text(),"PDF/CALs")]
+//div[@class="center-content"]//div[@class="result" or @class="result selected"][1]//div[contains(@class,"short-view-card")] //a[contains(text(),"PDF/CALs")]
+
+self.driver.find_element_by_xpath("//span[contains(@class,\"fancytree-node\") and .//*[text()=\"Adam Opel GmbH\"]]/../ul")
+
+
+CPQ sorting //*[@id="tree"]//div[@title="remove"]
+//*[@id="tree"]/ul/li[@role="treeitem" and @aria-expanded="false"]                    "
